@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t zeevbensender/react-test -f ./clent/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true zeevbensender/react-test npm run test
+
+after_success:
+  - docker build -t zeevbensender/multi-client ./client
+  - docker build -t zeevbensender/multi-nginex ./nginex
+  - docker build -t zeevbensender/multi-server ./server
+  - docker build -t zeevbensender/multi-worker ./worker
