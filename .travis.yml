@@ -11,15 +11,15 @@ script:
   - docker run -e CI=true zeevbensender/react-test npm run test
 
 after_success:
-  - docker build -t zeevbensender/multi-client ./client
-  - docker build -t zeevbensender/multi-nginex ./nginex
-  - docker build -t zeevbensender/multi-server ./server
-  - docker build -t zeevbensender/multi-worker ./worker
+  - docker build -t bensender/multi-client ./client
+  - docker build -t bensender/multi-nginex ./nginex
+  - docker build -t bensender/multi-server ./server
+  - docker build -t bensender/multi-worker ./worker
  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
  # Take those images and push them to docker hub
-  - docker push zeevbensender/multi-client
-  - docker push zeevbensender/multi-nginx
-  - docker push zeevbensender/multi-server
-  - docker push zeevbensender/multi-worker
+  - docker push bensender/multi-client
+  - docker push bensender/multi-nginx
+  - docker push bensender/multi-server
+  - docker push bensender/multi-worker
   
