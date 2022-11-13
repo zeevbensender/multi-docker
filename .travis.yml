@@ -1,5 +1,6 @@
-language: generic
 sudo: required
+language: generic
+
 services:
   - docker
 
@@ -14,8 +15,9 @@ after_success:
   - docker build -t zeevbensender/multi-nginex ./nginex
   - docker build -t zeevbensender/multi-server ./server
   - docker build -t zeevbensender/multi-worker ./worker
-
+ # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+ # Take those images and push them to docker hub
   - docker push zeevbensender/multi-client
   - docker push zeevbensender/multi-nginx
   - docker push zeevbensender/multi-server
