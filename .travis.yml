@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t zeevbensender/react-test -f ./clent/Dockerfile.dev ./client
+  - docker build -t zeevbensender/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true zeevbensender/react-test npm run test
